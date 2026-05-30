@@ -42,7 +42,7 @@ Following in the footsteps of languages like [Haskell](https://www.haskell.org/)
 
 Anyway, the core idea of `Church` is a simple one:
 
-> [Lisp](https://lisp-lang.org/), but gramatically stricter
+> [Lisp](https://lisp-lang.org/), but gramatically **stricter**
 
 Meaning:
 - Variables must be statically typed
