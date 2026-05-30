@@ -32,13 +32,13 @@ The problem is... it is [ugly as all hell](https://dersavage.github.io/main/tuto
     total-days))
 ```
 
-The other problem is, it's far too syntactically permissive, as in, it's really easy to overload built-in functions, variables, etc. because they're not namespaced or visually distinct from user-defined types (though this is a problem pervasive to pretty much every programming language).
+The other problem is, it's far too syntactically permissive, as in, it's really easy to overload built-in functions, variables, etc. because they're not namespaced or visually distinct from user-defined ones (though this is a problem pervasive to pretty much every programming language).
 
 But, it is **right** about structure.
 
 This is where `Church` comes in.
 
-Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `Church` is named for a legend in the field of computer science - [Alonzo Church](https://yuvanshjain.substack.com/p/from-churchs-mind-to-your-code) - whose work on lambda calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/).
+Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `Church` is named for a key figure in the history of computer science - [Alonzo Church](https://yuvanshjain.substack.com/p/from-churchs-mind-to-your-code) - whose work on lambda calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/).
 
 Anyway, the core idea of `Church` is a simple one:
 
