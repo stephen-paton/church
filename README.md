@@ -1,7 +1,7 @@
 # Church
 Here's the thing...
 
-[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question of "How do you design a **scaleable** programming language", in the sense of expanding complexity without bloating syntax (*cough* [Rust](https://rust-lang.org/) *cough*).
+[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question of "How do you design a **scaleable** programming language", in the sense of expanding complexity without bloating syntax - [Rust](https://rust-lang.org/), [C++](https://isocpp.org/), etc.
 
 The problem is... it is [ugly as all hell](https://dersavage.github.io/main/tutorials/why-lisp-is-horrible/):
 ```lisp
@@ -38,7 +38,7 @@ But, it is **right** about structure.
 
 This is where `Church` comes in.
 
-Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `Church` is named for a key figure in the history of computer science - [Alonzo Church](https://yuvanshjain.substack.com/p/from-churchs-mind-to-your-code) - whose work on lambda calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/).
+Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `Church` is named for a key figure in the history of computer science - [Alonzo Church](https://courses.cs.washington.edu/courses/cse505/23wi/notes/notes/week07/) - whose work on lambda calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/), which itself, inspired `Church` - turtles all the way down.
 
 Anyway, the core idea of `Church` is a simple one:
 
