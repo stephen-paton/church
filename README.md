@@ -49,11 +49,11 @@ Meaning:
 - No grammar-defying shorthand like `'(1 2 3 4)` versus `(list 1 2 3 4)`
 - Each distinct *thing* has a particular syntax associated with it
 
-I suppose the biggest departure from [Lisp](https://lisp-lang.org/) is that `Church` distinguishes data lists `[x, y, z]` from operator-driven ones `(#operator, x, y, z)`, which helps break up the otherwise endless `((()))`, in addition to providing clarity of intent:
+I suppose the biggest departure from [Lisp](https://lisp-lang.org/) is that `Church` distinguishes data lists `[x, y, z]` from operator-driven ones `(#operator, x, y, z)`, which helps break up the otherwise endless `((()))`, in addition to providing clarity of purpose:
 ```church
 (#import fmt `std:fmt`)
 (#proc ~hello_world [] [
-	(#call fmt:~println `Hello, World!`)
+	(#call fmt:~print_ln `Hello, World!`)
 ])
 (#call ~hello_world [])
 ```
@@ -69,3 +69,17 @@ The language is very much still at the proof of concept stage, but so far I've s
 - `~procedure`
 - `@macro`
 - `namespace:`
+
+The core philosophy driving the design of `Church` is **syntactic consistency**, meaning that each distinct *thing*, should apply universally.
+
+Though I confess that I enjoy programming in languages that look more like this:
+```casper
+import std::fmt
+
+hello_world : fn = () => nil {
+	fmt.print_ln(`Hello, World!`)
+	-> nil
+}
+```
+
+It cannot be denied that the grammatical consistency and simplicity of the [Lisp](https://lisp-lang.org/) approach, which itself mirrors the structure of assembly, is the logically correct way to go, because the language itself effectively becomes **the AST** that it would parse to, and the grammar is so logically consistent, that the parser itself becomes child's play to write, because there's really just two structures to recursively parse in the case of `Church` and amazingly, just one in the case of [Lisp](https://lisp-lang.org/) (at the cost of parenthesis fatigue).
