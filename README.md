@@ -66,6 +66,6 @@ The language is very much still at the proof of concept stage, but so far I've s
 - `$GLOBAL_CONSTANT`
 - `'type`
 - `#operator`
-- `~function`
+- `~procedure`
 - `@macro`
 - `namespace:`
