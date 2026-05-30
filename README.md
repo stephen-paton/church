@@ -59,7 +59,7 @@ I suppose the biggest departure from [Lisp](https://lisp-lang.org/) is that `Chu
 ```
 
 The language is very much still at the proof of concept stage, but so far I've settled on the following:
-- `_enum_value`
+- `_enum_option`
 - `local_variable`
 - `$global_variable`
 - `CONSTANT`
