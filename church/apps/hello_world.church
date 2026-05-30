@@ -1,0 +1,4 @@
+(#import fmt: {church/fmt})
+(#proc ~hello_world [] [] [
+	(#call fmt:~print_ln [{Hello, World!}])
+])
