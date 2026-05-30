@@ -1,7 +1,7 @@
 # Church
 Here's the thing...
 
-[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question "How do you design a **scaleable** programming language", in the sense of expanding complexity without bloating syntax - [Rust](https://rust-lang.org/), [C++](https://isocpp.org/), etc.
+[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question "How do you design a **scaleable** programming language", in the sense of facilitating recursively expanding complexity without syntax bloat - [Rust](https://rust-lang.org/), [C++](https://isocpp.org/), etc.
 
 The problem is... it is [ugly as all hell](https://dersavage.github.io/main/tutorials/why-lisp-is-horrible/):
 ```lisp
