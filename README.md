@@ -8,7 +8,7 @@ Here's the thing...
 [Lisp](https://lisp-lang.org/) is, unironically, the answer to the question:
 > "How do you design a **scaleable** programming language"
 
-By **scaleable**, I mean that the ground-floor grammar of the language is as such, that it enables turtles atop turtles atop turtles of complexity, without the need to introduce new grammatical rules as new ideas about *how* one should write code, emerge:
+By **scaleable**, I mean that the ground-floor grammar of the language is such, that it enables turtles atop turtles atop turtles of complexity, without the need to introduce new grammatical rules as new ideas about *how* one should write code, emerge:
 ```js
 // so many ways to write the same loop
 for (var i = 0; i < 10; i++) { /*...*/ }
