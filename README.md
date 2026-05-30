@@ -44,12 +44,14 @@ If you *really* want to see how **bad** things can get in this regard, go spend 
 
 So, how does one avoid this seemingly unavoidable problem of ever-expanding grammatical complexity?
 
-Simple, you establish a recursive grammar rule, that enables one to express any idea in code. You do that, and you get [Lisp](https://lisp-lang.org/):
+Simple, you establish a **recursive** grammar rule, that enables one to express any idea in code.
+
+Do that as succinctly as possible, and you get [Lisp](https://lisp-lang.org/):
 ```lisp
 (operator ...args)
 ```
 
-This building block is all that is needed to express any idea in code:
+Seriously, that one rule really can be used to express **any** idea in code:
 ```lisp
 (define (leap-year? year)
   (if (or (not (zero? (remainder year 4)))
