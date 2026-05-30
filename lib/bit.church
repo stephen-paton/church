@@ -10,7 +10,7 @@
 		_7 0b1000_0000
 	])
 	(#proc ~u8__is_on [value 'u8 bit 'b8] [
-		(#return (#is_equal (#bitwise_and (#backing_from_enum bit) value) value))
+		(#return (#has_equal_bits (#bitwise_and (#get_backing_type bit) value) value))
 	])
 	(#proc_group ~is_on [
 		~u8__is_on
