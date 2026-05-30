@@ -53,7 +53,7 @@ I suppose the biggest departure from [Lisp](https://lisp-lang.org/) is that `Chu
 ```church
 (#import fmt `std:fmt`)
 (#proc ~hello_world [] [
-	(#call fmt:~print_ln `Hello, World!`)
+	(#call fmt:~print_ln [`Hello, World!`])
 ])
 (#call ~hello_world [])
 ```
