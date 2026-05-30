@@ -1,0 +1,16 @@
+{
+  "name": "church_js",
+  "version": "0.0.0",
+  "description": "church's bootstrap compiler",
+  "author": "Stephen Paton",
+  "type": "module",
+  "bin": {
+    "church_js": "./out/cli.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
+  },
+  "scripts": {
+	"build": "esbuild ./in/main.js --bundle --platform=node --target=node18 --outfile=out/cli.js --minify"
+  }
+}
