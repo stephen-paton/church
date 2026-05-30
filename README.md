@@ -1,9 +1,55 @@
-# Church
+# `church`
+## What's with the name `church`?
+Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `church` is named for a key figure in the history of computer science - [Alonzo Church](https://courses.cs.washington.edu/courses/cse505/23wi/notes/notes/week07/) - whose work on λ-calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/), which itself inspired the grammar of **this** language, so the name `church` felt fitting.
+
+## Why `church`?
 Here's the thing...
 
-[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question "How do you design a **scaleable** programming language", in the sense of facilitating recursively expanding complexity without syntax bloat - [Rust](https://rust-lang.org/), [C++](https://isocpp.org/), etc.
+[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question:
+> "How do you design a **scaleable** programming language"
 
-The problem is... it is [ugly as all hell](https://dersavage.github.io/main/tutorials/why-lisp-is-horrible/):
+By **scaleable**, I mean that the ground-floor grammar of the language is as such, that it enables turtles atop turtles atop turtles of complexity, without the need to introduce new grammatical rules as new ideas about *how* one should write code, emerge:
+```js
+// so many ways to write the same loop
+for (var i = 0; i < 10; i++) { /*...*/ }
+
+for (let i = 0; i < 10; i++) { /*...*/ }
+
+for (const i = 0; i < 10; i++) { /*...*/ }
+
+for (const i of Array.from(Array(10).keys())) { /*...*/ }
+
+// so many ways to write the same if/else
+let name;
+
+if (true) {
+	name = 'Matilda';
+} else {
+	name = 'Jasper';
+}
+
+name = true ? 'Matilda' : 'Jasper';
+
+switch (true) {
+	case true:
+		name = 'Matilda';
+		break;
+	case false:
+		name = 'Jasper';
+		break;
+}
+```
+
+If you *really* want to see how **bad** things can get in this regard, go spend some time with [Rust](https://rust-lang.org/) or [C++](https://isocpp.org/).
+
+So, how does one avoid this seemingly unavoidable problem of ever-expanding grammatical complexity?
+
+Simple, you establish a recursive grammar rule, that enables one to express any idea in code. You do that, and you get [Lisp](https://lisp-lang.org/):
+```lisp
+(operator ...args)
+```
+
+This building block is all that is needed to express any idea in code:
 ```lisp
 (define (leap-year? year)
   (if (or (not (zero? (remainder year 4)))
@@ -32,54 +78,47 @@ The problem is... it is [ugly as all hell](https://dersavage.github.io/main/tuto
     total-days))
 ```
 
-The other problem is, it's far too syntactically permissive, as in, it's really easy to overload built-in functions, variables, etc. because they're not namespaced or visually distinct from user-defined ones (though this is a problem pervasive to pretty much every programming language).
+And, because **anything** can be expressed with it, there's never a need to add a new grammar rule to allow the language to express a new idea, regardless of how things progress in the field of computer science.
 
-But, it is **right** about structure.
+The elephant in the room - of course - is that all of those parentheses make the language [far less readable](https://dersavage.github.io/main/tutorials/why-lisp-is-horrible/) than languages like [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [Zig](https://ziglang.org/).
 
-This is where `Church` comes in.
+This was the core impetus for making `church`, as, though I grasped the paradigm shift that [Lisp](https://lisp-lang.org/)'s structure is (see [Let Over Lambda](https://letoverlambda.com/)), I just didn't like the actual **syntax** of it, and so, I wanted to try my hand at making a grammar that embraced that simple structural foundation of [Lisp](https://lisp-lang.org/) - `(operator ...args)` - with internal grammar that better denoted the purpose of each language token.
 
-Following in the footsteps of languages like [Haskell](https://www.haskell.org/) and [Ada](https://www.adaic.org/), `Church` is named for a key figure in the history of computer science - [Alonzo Church](https://courses.cs.washington.edu/courses/cse505/23wi/notes/notes/week07/) - whose work on lambda calculus directly inspired the design of languages like [Lisp](https://lisp-lang.org/), which itself, inspired `Church` - turtles all the way down.
+For example, it's always annoyed me with programming languages, that a keyword like `if`, `else`, `true`, `false`, exists within the same context as a variable name like `hello` or `world`, and within the same context as a numeric literal like `123` or `0b1111_0100`.
 
-Anyway, the core idea of `Church` is a simple one:
+With `church` the intention is to design the simplest possible grammar for expressing all of these things in such a way that purpose is **ubiquitous**.
 
-> [Lisp](https://lisp-lang.org/), but gramatically **stricter**
+Taking that idea to its ultimate conclusion, I've landed on the following three **structural** elements:
+- `{...}` - A scalar value e.g. `{Hello, World!}` or `{1000_0100}`
+- `[...args]` - A list of data e.g. `[{1} {2} {3}]`
+- `(#operator ...args)` - A list that **does** something e.g. `(#call fmt:~print_ln [{Hello, World!}])`
 
-Meaning:
-- Variables must be statically typed
-- No grammar-defying shorthand like `'(1 2 3 4)` versus `(list 1 2 3 4)`
-- Each distinct *thing* has a particular syntax associated with it
+And the following **identifier** types:
+- `_enum_option` e.g, `_Vertical`
+- `local_variable` e.g. `name`
+- `CONSTANT` e.g. `NAME`
+- `'type` e.g. `'string`
+- `#operator` e.g. `#enum`
+- `~procedure` e.g. `~flip_bit`
+- `@macro` e.g. `@inline_for`
+- `namespace:` e.g. `fmt:`
 
-I suppose the biggest departure from [Lisp](https://lisp-lang.org/) is that `Church` distinguishes data lists `[x, y, z]` from operator-driven ones `(#operator, x, y, z)`, which helps break up the otherwise endless `((()))`, in addition to providing clarity of purpose:
+*If* globals were allowed then they'd have the following syntax:
+- `$global_variable` e.g. `$name`
+- `$GLOBAL_CONSTANT` e.g. `$NAME`
+
+However, having seen the light of **namespace prefixes** via [Odin](https://odin-lang.org/), I feel that globals are an anti-pattern not worth enabling, as `(#import rt {path/to/root})` and `rt:static_var` enable equivalent behaviour, without ever needing to wonder where the hell something in a program/library was defined, and where it's being used/updated.
+
+Ultimately, the **aim** is to make `church` self-compiling, which is to say, for the lowest-level of the language to be the output grammar of a compile target.
+
+For example, if you're compiling for `gbz80`, then it might look something like:
 ```church
-(#import fmt `std:fmt`)
-(#proc ~hello_world [] [
-	(#call fmt:~print_ln [`Hello, World!`])
-])
-(#call ~hello_world [])
+(#call gbz80:@adc__a__r8 _d)
 ```
 
-The language is very much still at the proof of concept stage, but so far I've settled on the following:
-- `_enum_option`
-- `local_variable`
-- `$global_variable`
-- `CONSTANT`
-- `$GLOBAL_CONSTANT`
-- `'type`
-- `#operator`
-- `~procedure`
-- `@macro`
-- `namespace:`
-
-The core philosophy driving the design of `Church` is **syntactic consistency**, meaning that each distinct *thing*, should apply universally.
-
-Though I confess that I enjoy programming in languages that look more like this:
-```casper
-import std::fmt
-
-hello_world : fn = () => nil {
-	fmt.print_ln(`Hello, World!`)
-	-> nil
-}
+Which would then emit:
+```church
+{8A}
 ```
 
-It cannot be denied that the grammatical consistency and simplicity of the [Lisp](https://lisp-lang.org/) approach, which itself mirrors the structure of assembly, is the logically correct way to go, because the language itself effectively becomes **the AST** that it would parse to, and the grammar is so logically consistent, that the parser itself becomes child's play to write, because there's really just two structures to recursively parse in the case of `Church` and amazingly, just one in the case of [Lisp](https://lisp-lang.org/) (at the cost of parenthesis fatigue).
+The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the recursive nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction - `(#call hello_world [])`...
