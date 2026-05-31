@@ -5,10 +5,10 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const MATCHER = /^#[a-z]+(?:_(?:[a-z]+|\d+))*/;
+const MATCHER = /^[a-z]+(?:_(?:[a-z]+|\d+))*:/;
 let r_matcher = null;
 
-export class Token_operator {
+export class Token_namespace {
 	#value;
 
 	constructor(value) {
@@ -24,7 +24,7 @@ export class Token_operator {
 
 		if (!result.was_successful) return false;
 
-		return new Token_operator(result.matches[0]);
+		return new Token_namespace(result.matches[0]);
 	}
 
 	get val() {
