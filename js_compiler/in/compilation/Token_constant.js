@@ -5,7 +5,7 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const MATCHER = /^[A-Z]+(?:_(?:[A-Z]+|\d+))*/;
+const MATCHER = /^[A-Z][A-Z0-9]*(?:_(?:[A-Z0-9]+))*/;
 let r_matcher = null;
 
 export class Token_constant {
