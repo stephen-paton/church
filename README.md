@@ -109,7 +109,7 @@ And the following **identifier** types:
 - `$global_variable` e.g. `$name`
 - `$GLOBAL_CONSTANT` e.g. `$NAME`
 
-However, having seen the light of **namespace prefixes** via [Odin](https://odin-lang.org/), I feel that globals are an anti-pattern not worth enabling, as `(#import rt: {path/to/root})` and `rt:static_var` enable equivalent behaviour, without ever needing to wonder where the hell something in a program/library was defined, and where it's being used/updated.
+However, having seen the light of **namespace prefixes** via [Odin](https://odin-lang.org/), I feel that globals are an anti-pattern not worth enabling, as `(#import rt: {path/to/root})` and `rt:file_global` enable equivalent behaviour, without ever needing to wonder where something in a program/library was defined, and where it's being used/updated.
 
 Ultimately, the **aim** is to make `church` self-compiling, which is to say, for the lowest-level of the language to be the output grammar of a compile target.
 
@@ -123,7 +123,7 @@ Which would then emit:
 {8A}
 ```
 
-The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the recursive nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction:
+The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the reflective nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction:
 ```church
 (#import fmt: {church/fmt})
 (#proc ~hello_world [] [] [
