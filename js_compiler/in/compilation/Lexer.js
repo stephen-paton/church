@@ -14,6 +14,7 @@ import { Token_open_paren } from './Token_open_paren.js';
 import { Token_operator } from './Token_operator.js';
 import { Token_open_square } from './Token_open_square.js';
 import { Token_proc } from './Token_proc.js';
+import { Token_type } from './Token_type.js';
 import { Token_variable } from './Token_variable.js';
 import { Token_whitespace } from './Token_whitespace.js';
 
@@ -22,6 +23,7 @@ const TOKEN_TYPES = [
 	Token_operator,
 	Token_macro,
 	Token_proc,
+	Token_type,
 	Token_enum_option,
 	Token_namespace,
 	Token_variable,
