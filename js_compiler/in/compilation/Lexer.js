@@ -3,11 +3,13 @@ import { DataRef_Write } from '../data/DataRef_Write.js';
 import { DataType } from '../helpers/DataType.js';
 import { Strings } from '../helpers/Strings.js';
 import { System } from '../system/System.js';
+import { Token_closed_paren } from './Token_closed_paren.js';
 import { Token_open_paren } from './Token_open_paren.js';
 import { Token_whitespace } from './Token_whitespace.js';
 
 const TOKEN_TYPES = [
 	Token_open_paren,
+	Token_closed_paren,
 	Token_whitespace,
 ];
 
