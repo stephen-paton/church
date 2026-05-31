@@ -5,11 +5,13 @@ import { Strings } from '../helpers/Strings.js';
 import { System } from '../system/System.js';
 import { Token_closed_paren } from './Token_closed_paren.js';
 import { Token_open_paren } from './Token_open_paren.js';
+import { Token_open_square } from './Token_open_square.js';
 import { Token_whitespace } from './Token_whitespace.js';
 
 const TOKEN_TYPES = [
 	Token_open_paren,
 	Token_closed_paren,
+	Token_open_square,
 	Token_whitespace,
 ];
 
