@@ -1,14 +1,14 @@
+import { Cloner } from '../helpers/Cloner.js';
 import { DataRef_Read } from '../data/DataRef_Read.js';
 import { DataRef_Write } from '../data/DataRef_Write.js';
-import { Cloner } from '../helpers/Cloner.js';
 import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const MATCHER = /^#[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*/;
+const MATCHER = /^[A-Z][A-Z0-9]*(?:_(?:[A-Z0-9]+))*/;
 let r_matcher = null;
 
-export class Token_operator {
+export class Token_upper_identifier {
 	#value;
 
 	constructor(value) {
@@ -24,10 +24,14 @@ export class Token_operator {
 
 		if (!result.was_successful) return false;
 
-		return new Token_operator(result.matches[0]);
+		return new Token_upper_identifier(result.matches[0]);
 	}
 
 	get val() {
 		return Cloner.clone(this.#value);
+	}
+
+	get d_str() {
+		return `Token<UpperIdentifier>("${this.val}")`;
 	}
 }

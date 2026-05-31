@@ -5,29 +5,30 @@ import { Strings } from '../helpers/Strings.js';
 import { System } from '../system/System.js';
 import { Token_closed_paren } from './Token_closed_paren.js';
 import { Token_closed_square } from './Token_closed_square.js';
-import { Token_constant } from './Token_constant.js';
 import { Token_enum_option } from './Token_enum_option.js';
 import { Token_literal } from './Token_literal.js';
-import { Token_macro } from './Token_macro.js';
-import { Token_namespace } from './Token_namespace.js';
+import { Token_lower_identifier } from './Token_lower_identifier.js';
+import { Token_macro_start } from './Token_macro_start.js';
+import { Token_namespace_end } from './Token_namespace_end.js';
 import { Token_open_paren } from './Token_open_paren.js';
-import { Token_operator } from './Token_operator.js';
+import { Token_operator_start } from './Token_operator_start.js';
 import { Token_open_square } from './Token_open_square.js';
-import { Token_proc } from './Token_proc.js';
-import { Token_type } from './Token_type.js';
-import { Token_variable } from './Token_variable.js';
+import { Token_proc_start } from './Token_proc_start.js';
+import { Token_type_start } from './Token_type_start.js';
+import { Token_upper_identifier } from './Token_upper_identifier.js';
 import { Token_whitespace } from './Token_whitespace.js';
+import { DataChecker } from '../helpers/DataChecker.js';
 
 const TOKEN_TYPES = [
 	Token_literal,
-	Token_operator,
-	Token_macro,
-	Token_proc,
-	Token_type,
+	Token_lower_identifier,
+	Token_upper_identifier,
+	Token_operator_start,
+	Token_macro_start,
+	Token_proc_start,
+	Token_type_start,
 	Token_enum_option,
-	Token_namespace,
-	Token_variable,
-	Token_constant,
+	Token_namespace_end,
 	Token_open_paren,
 	Token_closed_paren,
 	Token_open_square,
@@ -56,7 +57,7 @@ export class Lexer {
 					continue;
 				} else {
 					matched_token = true;
-					token_list.push(result);
+					if (!DataChecker.is_type(result, DataType.Token_whitespace)) token_list.push(result);
 					break;
 				}
 			}

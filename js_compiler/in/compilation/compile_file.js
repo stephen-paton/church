@@ -36,4 +36,6 @@ export function compile_file(file_option) {
 	const r_source_code = new DataRef_Read(source_code);
 
 	const token_list = Lexer.tokenise(r_source_code);
+
+	for (const token of token_list) console.log(token.d_str);
 }

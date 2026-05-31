@@ -1,6 +1,6 @@
+import { Cloner } from '../helpers/Cloner.js';
 import { DataRef_Read } from '../data/DataRef_Read.js';
 import { DataRef_Write } from '../data/DataRef_Write.js';
-import { Cloner } from '../helpers/Cloner.js';
 import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
@@ -25,5 +25,9 @@ export class Token_closed_paren {
 
 	get val() {
 		return Cloner.clone(VALUE);
+	}
+
+	get d_str() {
+		return `Token<ClosedParen>("${this.val}")`;
 	}
 }

@@ -3,6 +3,7 @@ import { DataRef_Read } from '../data/DataRef_Read.js';
 import { DataRef_Write } from '../data/DataRef_Write.js';
 import { DataType } from './DataType.js';
 import { System } from '../system/System.js';
+import { Token_whitespace } from '../compilation/Token_whitespace.js';
 
 export class DataChecker {
 	static is_type(value, expected_type) {
@@ -19,6 +20,8 @@ export class DataChecker {
 				return value instanceof DataRef_Read;
 			case DataType.DataRef_Write:
 				return value instanceof DataRef_Write;
+			case DataType.Token_whitespace:
+				return value instanceof Token_whitespace;
 			default:
 				System.die(`User Error :: Unrecognised type passed`);
 		}
