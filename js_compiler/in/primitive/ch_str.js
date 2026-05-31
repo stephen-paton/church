@@ -14,15 +14,41 @@ export class ch_str {
 		return this.#value;
 	}
 
-	starts_with(other) {
-		if (!DataChecker.is_ch_str(other)) die(`Programmer Error :: ch_str.starts_with :: 'value' is not a ch_str`);
+	starts_with(value) {
+		if (!(DataChecker.is_string(value) || DataChecker.is_ch_str(value))) die(`Programmer Error :: ch_str.starts_with :: 'value' is not a string or ch_str`);
 
-		return this.val.startsWith(other.val);
+		if (DataChecker.is_ch_str(value)) value = value.val;
+
+		return this.val.startsWith(value);
 	}
 
-	delete_first_occurrence_of(value_to_delete) {
-		if (!DataChecker.is_ch_str(value_to_delete)) die(`Programmer Error :: ch_str.replace :: 'value_to_delete' is not a ch_str`);
+	ends_with(value) {
+		if (!(DataChecker.is_string(value) || DataChecker.is_ch_str(value))) die(`Programmer Error :: ch_str.ends_with :: 'value' is not a string or ch_str`);
 
-		this.#value = this.#value.replace(value_to_delete.val, '');
+		if (DataChecker.is_ch_str(value)) value = value.val;
+
+		return this.val.endsWith(value);
+	}
+
+	delete_first_occurrence_of(value) {
+		if (!(DataChecker.is_string(value) || DataChecker.is_ch_str(value))) die(`Programmer Error :: ch_str.delete_first_occurrence_of :: 'value' is not a string or ch_str`);
+
+		if (DataChecker.is_ch_str(value)) value = value.val;
+
+		this.#value = this.#value.replace(value, '');
+	}
+
+	concat(value) {
+		if (!(DataChecker.is_string(value) || DataChecker.is_ch_str(value))) die(`Programmer Error :: ch_str.concat :: 'value' is not a string or ch_str`);
+
+		if (DataChecker.is_ch_str(value)) value = value.val;
+
+		this.#value += value;
+	}
+
+	concat_if_not_ends_with(value) {
+		if (this.ends_with(value)) return;
+
+		this.concat(value);
 	}
 }

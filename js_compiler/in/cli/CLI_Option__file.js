@@ -3,14 +3,14 @@ import { DataChecker } from '../helper/DataChecker.js';
 import { die } from '../system/die.js';
 
 export class CLI_Option__file {
-	static #prefix = new ch_str('file=');
+	static #prefix = 'file=';
 
 	#path;
 
 	constructor(path) {
-		if (!DataChecker.is_ch_str(path)) die(`Programmer Error :: CLI_Option__file.constructor :: 'path' is not a ch_str`);
+		if (!(DataChecker.is_string(path) || DataChecker.is_ch_str(path))) die(`Programmer Error :: CLI_Option__file.constructor :: 'path' is not a string or ch_str`);
 
-		this.#path = path;
+		this.#path = DataChecker.is_string(path) ? new ch_str(path) : path;
 	}
 
 	get path() {
@@ -19,10 +19,12 @@ export class CLI_Option__file {
 
 	static try_from_args(args) {
 		for (const arg of args) {
-			if (!arg.starts_with(CLI_Option__file.#prefix)) continue;
+			const ch_str_arg = new ch_str(arg);
+
+			if (!ch_str_arg.starts_with(CLI_Option__file.#prefix)) continue;
 				
-			arg.delete_first_occurrence_of(CLI_Option__file.#prefix);
-			return new CLI_Option__file(arg);
+			ch_str_arg.delete_first_occurrence_of(CLI_Option__file.#prefix);
+			return new CLI_Option__file(ch_str_arg);
 		}
 
 		return false;
