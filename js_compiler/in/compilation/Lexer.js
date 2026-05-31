@@ -10,8 +10,10 @@ import { Token_open_paren } from './Token_open_paren.js';
 import { Token_operator } from './Token_operator.js';
 import { Token_open_square } from './Token_open_square.js';
 import { Token_whitespace } from './Token_whitespace.js';
+import { Token_literal } from './Token_literal.js';
 
 const TOKEN_TYPES = [
+	Token_literal,
 	Token_operator,
 	Token_namespace,
 	Token_open_paren,
