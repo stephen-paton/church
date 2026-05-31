@@ -1,0 +1,33 @@
+{#import bi: "church:builtin"}
+(#export (#union 'n8 [
+	bi:'u8
+	bi:'i8
+]))
+(#export (#union 'n16 [
+	bi:'u16
+	bi:'i16
+]))
+(#export (#enum 'r8 bi:'u8 [
+	_a {0}
+	_b {1}
+	_c {2}
+	_d {3}
+	_e {4}
+	_h {5}
+	_l {6}
+]))
+(#export (#enum 'r16 bi:'u8 [
+	_bc {0}
+	_de {1}
+	_hl {2}
+]))
+(#export (#enum 'v8 bi:'h8 [
+	_$00 {00}
+	_$08 {08}
+	_$10 {10}
+	_$18 {18}
+	_$20 {20}
+	_$28 {28}
+	_$30 {30}
+	_$38 {38}
+]))
