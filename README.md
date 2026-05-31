@@ -5,7 +5,7 @@ Following in the footsteps of languages like [Haskell](https://www.haskell.org/)
 ## Why `church`?
 Here's the thing...
 
-[Lisp](https://lisp-lang.org/) is, unironically, the answer to the question:
+[Lisp](https://lisp-lang.org/) (a programming language specified way back in the 1950s) is, unironically, the answer to the question:
 > "How do you design a **scaleable** programming language"
 
 By **scaleable**, I mean that the ground-floor grammar of the language is such, that it enables turtles atop turtles atop turtles of complexity, without the need to introduce new grammatical rules as new ideas about *how* one should write code, emerge:
@@ -115,7 +115,7 @@ Ultimately, the **aim** is to make `church` self-compiling, which is to say, for
 
 For example, if you're compiling for `gbz80`, then it might look something like:
 ```church
-(#call gbz80:@adc__a__r8 _d)
+(gbz80:@adc__a__r8 _d)
 ```
 
 Which would then emit:
