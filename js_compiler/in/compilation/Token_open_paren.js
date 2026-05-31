@@ -5,12 +5,12 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const VALUE = ' ';
+const VALUE = '(';
 
-const MATCHER = /\s+/;
+const MATCHER = /\(/;
 let r_matcher = null;
 
-export class Token_whitespace {
+export class Token_open_paren {
 	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
@@ -20,7 +20,7 @@ export class Token_whitespace {
 
 		if (!result.was_successful) return false;
 
-		return new Token_whitespace();
+		return new Token_open_paren();
 	}
 
 	get val() {

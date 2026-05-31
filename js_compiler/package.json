@@ -11,6 +11,9 @@
     "esbuild": "^0.28.0"
   },
   "scripts": {
-	"build": "esbuild ./in/main.js --bundle --platform=node --target=node18 --outfile=out/cli.js --minify --sourcemap"
+    "build": "esbuild ./in/main.js --bundle --platform=node --target=node18 --outfile=out/cli.js --minify --sourcemap"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
   }
 }
