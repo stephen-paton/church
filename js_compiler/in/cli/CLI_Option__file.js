@@ -1,30 +1,31 @@
-import { ch_str } from '../primitive/ch_str.js';
-import { DataChecker } from '../helper/DataChecker.js';
-import { die } from '../system/die.js';
+import { Cloner } from '../helpers/Cloner.js';
+import { DataChecker } from '../helpers/DataChecker.js';
+import { Strings } from '../helpers/Strings.js';
+import { System } from '../system/System.js';
+
+const PREFIX = 'file=';
 
 export class CLI_Option__file {
-	static #prefix = 'file=';
-
 	#path;
 
 	constructor(path) {
-		if (!(DataChecker.is_string(path) || DataChecker.is_ch_str(path))) die(`Programmer Error :: CLI_Option__file.constructor :: 'path' is not a string or ch_str`);
+		System.die_if_not_type(path, 'path', String, 'string', 'CLI_Option__file.constructor');
 
-		this.#path = DataChecker.is_string(path) ? new ch_str(path) : path;
+		this.#path = path;
 	}
 
 	get path() {
-		return this.#path;
+		return Cloner.clone(this.#path);
 	}
 
 	static try_from_args(args) {
-		for (const arg of args) {
-			const ch_str_arg = new ch_str(arg);
+		System.die_if_not_array_of_type(args, 'args', String, 'string', 'CLI_Option__file.try_from_args');
 
-			if (!ch_str_arg.starts_with(CLI_Option__file.#prefix)) continue;
+		for (let arg of args) {
+			if (!Strings.starts_with(arg, PREFIX)) continue;
 				
-			ch_str_arg.delete_first_occurrence_of(CLI_Option__file.#prefix);
-			return new CLI_Option__file(ch_str_arg);
+			arg = Strings.delete_first_occurrence(arg, PREFIX);
+			return new CLI_Option__file(arg);
 		}
 
 		return false;

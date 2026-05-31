@@ -1,31 +1,34 @@
 import { readFileSync } from 'node:fs';
 
-import { ch_str } from '../primitive/ch_str.js';
-import { die } from '../system/die.js';
+import { CLI_Option__file } from '../cli/CLI_Option__file.js';
+import { Strings } from '../helpers/Strings.js';
+import { System } from '../system/System.js';
 
 export function compile_file(file_option) {
-	file_option.path.concat_if_not_ends_with('.church');
+	System.die_if_not_type(file_option, 'file_option', CLI_Option__file, 'CLI_Option__file', 'compile_file');
 
-	let file_contents;
+	const path = Strings.concat_if_not_ends_with(file_option.path, '.church');
+
+	let source_code;
 
 	try {
-		file_contents = readFileSync(file_option.path.val, 'utf8');
+		source_code = readFileSync(path, 'utf8');
 	} catch(err) {
 		switch (err.code) {
 			case 'ENOENT':
-				die(`User Error :: The file '${file_option.path.val}' does not exist`);
+				System.die(`User Error :: The file '${path}' does not exist`);
 				break;
 			case 'EISDIR':
-				die(`User Error :: '${file_option.path.val}' is a directory, not a file`);
+				System.die(`User Error :: '${path}' is a directory, not a file`);
 				break;
 			case 'EACCES':
-				die(`User Error :: You do not have access to the file '${file_option.path.val}'`);
+				System.die(`User Error :: You do not have access to the file '${path}'`);
 				break;
 			default:
-				die(`OS Error :: Failed to read the file at '${file_option.path.val}'`);
+				System.die(`OS Error :: Failed to read the file at '${path}'`);
 				break;
 		}
 	}
 
-	console.log(file_contents);
+	console.log(source_code);
 }

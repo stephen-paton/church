@@ -1,42 +1,39 @@
 import { DataChecker } from './DataChecker.js';
+import { System } from '../system/System.js';
 
 export class Strings {
 	static starts_with(value, other) {
-		die_if_not_string(value, 'value', 'Strings.starts_with');
-		die_if_not_string(other, 'other', 'Strings.starts_with');
+		System.die_if_not_type(value, 'value', String, 'string', 'Strings.starts_with');
+		System.die_if_not_type(other, 'other', String, 'string', 'Strings.starts_with');
 
 		return value.startsWith(other);
 	}
 
 	static ends_with(value, other) {
-		die_if_not_string(value, 'value', 'Strings.ends_with');
-		die_if_not_string(other, 'other', 'Strings.ends_with');
+		System.die_if_not_type(value, 'value', String, 'string', 'Strings.ends_with');
+		System.die_if_not_type(other, 'other', String, 'string', 'Strings.ends_with');
 
 		return value.endsWith(other);
 	}
 
-	static delete_first_occurrence_of(value, other) {
-		die_if_not_string(value, 'value', 'Strings.delete_first_occurrence_of');
-		die_if_not_string(other, 'other', 'Strings.delete_first_occurrence_of');
+	static delete_first_occurrence(value, other) {
+		System.die_if_not_type(value, 'value', String, 'string', 'Strings.delete_first_occurrence_of');
+		System.die_if_not_type(other, 'other', String, 'string', 'Strings.delete_first_occurrence_of');
 
 		return value.replace(other, '');
 	}
 
 	static concat(value, other) {
-		die_if_not_string(value, 'value', 'Strings.concat');
-		die_if_not_string(other, 'other', 'Strings.concat');
+		System.die_if_not_type(value, 'value', String, 'string', 'Strings.concat');
+		System.die_if_not_type(other, 'other', String, 'string', 'Strings.concat');
 
 		return `${value}${other}`;
 	}
 
-	concat_if_not_ends_with(value, other) {
-		die_if_not_string(value, 'value', 'Strings.concat_if_not_ends_with');
-		die_if_not_string(other, 'other', 'Strings.concat_if_not_ends_with');
+	static concat_if_not_ends_with(value, other) {
+		System.die_if_not_type(value, 'value', String, 'string', 'Strings.concat_if_not_ends_with');
+		System.die_if_not_type(other, 'other', String, 'string', 'Strings.concat_if_not_ends_with');
 
 		return Strings.ends_with(value, other) ? value : Strings.concat(value, other);
 	}
-}
-
-function die_if_not_string(value, arg, caller) {
-	if (!(DataChecker.is_string(value))) die(`Programmer Error :: ${caller} :: 'value' is not a string`);
 }
