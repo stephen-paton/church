@@ -93,7 +93,7 @@ With `church` the intention is to design the simplest possible grammar for expre
 Taking that idea to its ultimate conclusion, I've landed on the following three **structural** elements:
 - `{...}` - A scalar value e.g. `{Hello, World!}` or `{1000_0100}`
 - `[...args]` - A list of data e.g. `[{1} {2} {3}]`
-- `(#operator ...args)` - A list that **does** something e.g. `(#call fmt:~print_ln [{Hello, World!}])`
+- `(callable ...args)` - A list that **does** something e.g. `(fmt:~print_ln [{Hello, World!}])`
 
 And the following **identifier** types:
 - `_enum_option` e.g, `_Vertical`
@@ -127,6 +127,7 @@ The idea basically being, because `church`'s syntax style mirrors that of low-le
 ```church
 (#import fmt: {church/fmt})
 (#proc ~hello_world [] [] [
-	(#call fmt:~print_ln [{Hello, World!}])
+	(fmt:~print_ln [{Hello, World!}])
 ])
+(~hello_world [])
 ```
