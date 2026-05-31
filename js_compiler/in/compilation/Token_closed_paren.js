@@ -7,7 +7,7 @@ import { TokenHelper } from './TokenHelper.js';
 
 const VALUE = ')';
 
-const MATCHER = /)/;
+const MATCHER = /^\)/;
 let r_matcher = null;
 
 export class Token_closed_paren {

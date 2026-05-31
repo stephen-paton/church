@@ -14,7 +14,7 @@ export class TokenHelper {
 
 		if (w_char_index.val > (r_source_code.val.length - 1)) System.die(`Programmer Error :: TokenHelper.try_match :: char_index is greater than the length of source_code`);
 
-		const matches = r_matcher.val.exec(r_source_code.val[w_char_index.val]);
+		const matches = r_matcher.val.exec(r_source_code.val.slice([w_char_index.val]));
 
 		if (matches === null) {
 			return { was_successful: false };
