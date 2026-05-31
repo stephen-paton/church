@@ -17,7 +17,7 @@ export class Lexer {
 		const token_list = [];
 
 		const w_char_index = new DataRef_Write(0);
-		const line_index = 0;
+		let line_index = 0;
 
 		while (w_char_index.val < r_source_code.val.length) {
 			let matched_token = false;
