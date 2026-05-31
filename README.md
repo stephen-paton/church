@@ -97,7 +97,7 @@ Taking that idea to its ultimate conclusion, I've landed on the following three 
 
 And the following **identifier** types:
 - `_enum_option` e.g, `_Vertical`
-- `local_variable` e.g. `name`
+- `variable` e.g. `name`
 - `CONSTANT` e.g. `NAME`
 - `'type` e.g. `'string`
 - `#operator` e.g. `#enum`
