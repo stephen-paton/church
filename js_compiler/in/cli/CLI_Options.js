@@ -1,4 +1,5 @@
 import { CLI_Option__file } from './CLI_Option__file.js';
+import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 
 const OPTION_CONSTRUCTORS = [
@@ -7,7 +8,7 @@ const OPTION_CONSTRUCTORS = [
 
 export class CLI_Options {
 	static from_args(args) {
-		System.die_if_not_array_of_type(args, 'args', String, 'string', 'CLI_Options.from_args');
+		System.die_if_not_array_of_type(args, 'args', DataType.string, 'string', 'CLI_Options.from_args');
 
 		const options = [];
 
