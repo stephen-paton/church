@@ -5,6 +5,7 @@ import { Strings } from '../helpers/Strings.js';
 import { System } from '../system/System.js';
 import { Token_closed_paren } from './Token_closed_paren.js';
 import { Token_closed_square } from './Token_closed_square.js';
+import { Token_constant } from './Token_constant.js';
 import { Token_enum_option } from './Token_enum_option.js';
 import { Token_literal } from './Token_literal.js';
 import { Token_macro } from './Token_macro.js';
@@ -24,6 +25,7 @@ const TOKEN_TYPES = [
 	Token_enum_option,
 	Token_namespace,
 	Token_variable,
+	Token_constant,
 	Token_open_paren,
 	Token_closed_paren,
 	Token_open_square,
