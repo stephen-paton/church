@@ -1,4 +1,3 @@
-import { Cloner } from '../helpers/Cloner.js';
 import { DataRef_Read } from '../data/DataRef_Read.js';
 import { DataRef_Write } from '../data/DataRef_Write.js';
 import { DataType } from '../helpers/DataType.js';
@@ -24,7 +23,7 @@ export class Token_MacroStart {
 	}
 
 	get val() {
-		return Cloner.clone(VALUE);
+		return VALUE;
 	}
 
 	get d_str() {

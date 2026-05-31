@@ -1,5 +1,3 @@
-import { Cloner } from '../helpers/Cloner.js';
-
 export class DataRef_Write {
 	#value;
 
@@ -8,7 +6,7 @@ export class DataRef_Write {
 	}
 
 	get val() {
-		return Cloner.clone(this.#value);
+		return this.#value;
 	}
 
 	set val(value) {

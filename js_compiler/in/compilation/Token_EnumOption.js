@@ -1,4 +1,3 @@
-import { Cloner } from '../helpers/Cloner.js';
 import { DataRef_Read } from '../data/DataRef_Read.js';
 import { DataRef_Write } from '../data/DataRef_Write.js';
 import { DataType } from '../helpers/DataType.js';
@@ -12,7 +11,7 @@ export class Token_EnumOption {
 	#value;
 
 	constructor(value) {
-		System.die_if_not_type(value, 'value', DataType.string, 'string', 'Token_closed_paren.constructor');
+		System.die_if_not_type(value, 'value', DataType.string, 'string', 'Token_EnumOption.constructor');
 
 		this.#value = value;
 	}
@@ -28,7 +27,7 @@ export class Token_EnumOption {
 	}
 
 	get val() {
-		return Cloner.clone(this.#value);
+		return this.#value;
 	}
 
 	get d_str() {

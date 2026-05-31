@@ -1,4 +1,3 @@
-import { Cloner } from '../helpers/Cloner.js';
 import { DataChecker } from '../helpers/DataChecker.js';
 import { DataType } from '../helpers/DataType.js';
 import { Strings } from '../helpers/Strings.js';
@@ -16,7 +15,7 @@ export class CLI_Option__file {
 	}
 
 	get path() {
-		return Cloner.clone(this.#path);
+		return this.#path;
 	}
 
 	static try_from_args(args) {
