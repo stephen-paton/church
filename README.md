@@ -123,4 +123,10 @@ Which would then emit:
 {8A}
 ```
 
-The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the recursive nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction - `(#call ~hello_world [])`...
+The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the recursive nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction:
+```church
+(#import fmt: {church/fmt})
+(#proc ~hello_world [] [] [
+	(#call fmt:~print_ln [{Hello, World!}])
+])
+```
