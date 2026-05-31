@@ -5,17 +5,13 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const MATCHER = /^_(?:\S+)/;
+const VALUE = '(';
+
+const MATCHER = /^\(/;
 let r_matcher = null;
 
-export class Token_enum_option {
-	#value;
-
-	constructor(value) {
-		System.die_if_not_type(value, 'value', DataType.string, 'string', 'Token_closed_paren.constructor');
-
-		this.#value = value;
-	}
+export class Token_OpenParen {
+	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
 		if (r_matcher === null) r_matcher = new DataRef_Read(MATCHER);
@@ -24,14 +20,14 @@ export class Token_enum_option {
 
 		if (!result.was_successful) return false;
 
-		return new Token_enum_option(result.matches[0]);
+		return new Token_OpenParen();
 	}
 
 	get val() {
-		return Cloner.clone(this.#value);
+		return Cloner.clone(VALUE);
 	}
 
 	get d_str() {
-		return `Token<EnumOption>("${this.val}")`;
+		return `Token<OpenParen>("${this.val}")`;
 	}
 }

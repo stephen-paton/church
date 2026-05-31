@@ -8,7 +8,7 @@ import { TokenHelper } from './TokenHelper.js';
 const MATCHER = /^[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*/;
 let r_matcher = null;
 
-export class Token_lower_identifier {
+export class Token_LowerIdentifier {
 	#value;
 
 	constructor(value) {
@@ -24,7 +24,7 @@ export class Token_lower_identifier {
 
 		if (!result.was_successful) return false;
 
-		return new Token_lower_identifier(result.matches[0]);
+		return new Token_LowerIdentifier(result.matches[0]);
 	}
 
 	get val() {

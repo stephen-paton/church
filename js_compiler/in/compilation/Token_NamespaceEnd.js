@@ -10,7 +10,7 @@ const VALUE = ':';
 const MATCHER = /^:/;
 let r_matcher = null;
 
-export class Token_namespace_end {
+export class Token_NamespaceEnd {
 	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
@@ -20,7 +20,7 @@ export class Token_namespace_end {
 
 		if (!result.was_successful) return false;
 
-		return new Token_namespace_end();
+		return new Token_NamespaceEnd();
 	}
 
 	get val() {

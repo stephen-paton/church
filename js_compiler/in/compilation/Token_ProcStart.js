@@ -5,12 +5,12 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const VALUE = ']';
+const VALUE = '~';
 
-const MATCHER = /^\]/;
+const MATCHER = /^~/;
 let r_matcher = null;
 
-export class Token_closed_square {
+export class Token_ProcStart {
 	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
@@ -20,7 +20,7 @@ export class Token_closed_square {
 
 		if (!result.was_successful) return false;
 
-		return new Token_closed_square();
+		return new Token_ProcStart();
 	}
 
 	get val() {
@@ -28,6 +28,6 @@ export class Token_closed_square {
 	}
 
 	get d_str() {
-		return `Token<ClosedSquare>("${this.val}")`;
+		return `Token<ProcStart>("${this.val}")`;
 	}
 }

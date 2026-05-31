@@ -8,7 +8,7 @@ import { TokenHelper } from './TokenHelper.js';
 const MATCHER = /^\{((?:\\\}|[^}])*)\}/;
 let r_matcher = null;
 
-export class Token_literal {
+export class Token_Literal {
 	#value;
 
 	constructor(value) {
@@ -24,7 +24,7 @@ export class Token_literal {
 
 		if (!result.was_successful) return false;
 
-		return new Token_literal(result.matches[1]);
+		return new Token_Literal(result.matches[1]);
 	}
 
 	get val() {

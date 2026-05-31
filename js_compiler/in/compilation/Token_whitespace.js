@@ -10,7 +10,7 @@ const VALUE = ' ';
 const MATCHER = /^\s+/;
 let r_matcher = null;
 
-export class Token_whitespace {
+export class Token_Whitespace {
 	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
@@ -20,7 +20,7 @@ export class Token_whitespace {
 
 		if (!result.was_successful) return false;
 
-		return new Token_whitespace();
+		return new Token_Whitespace();
 	}
 
 	get val() {

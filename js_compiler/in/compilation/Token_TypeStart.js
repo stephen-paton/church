@@ -5,17 +5,13 @@ import { DataType } from '../helpers/DataType.js';
 import { System } from '../system/System.js';
 import { TokenHelper } from './TokenHelper.js';
 
-const MATCHER = /^[A-Z][A-Z0-9]*(?:_(?:[A-Z0-9]+))*/;
+const VALUE = "'";
+
+const MATCHER = /^'/;
 let r_matcher = null;
 
-export class Token_upper_identifier {
-	#value;
-
-	constructor(value) {
-		System.die_if_not_type(value, 'value', DataType.string, 'string', 'Token_closed_paren.constructor');
-
-		this.#value = value;
-	}
+export class Token_TypeStart {
+	constructor() {}
 
 	static try_match(w_char_index, r_source_code) {
 		if (r_matcher === null) r_matcher = new DataRef_Read(MATCHER);
@@ -24,14 +20,14 @@ export class Token_upper_identifier {
 
 		if (!result.was_successful) return false;
 
-		return new Token_upper_identifier(result.matches[0]);
+		return new Token_TypeStart();
 	}
 
 	get val() {
-		return Cloner.clone(this.#value);
+		return Cloner.clone(VALUE);
 	}
 
 	get d_str() {
-		return `Token<UpperIdentifier>("${this.val}")`;
+		return `Token<TypeStart>("${this.val}")`;
 	}
 }
