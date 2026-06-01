@@ -93,10 +93,9 @@ With `church` the intention is to design the simplest possible grammar for expre
 Taking that idea to its ultimate conclusion, I've landed on the following three **structural** elements:
 - `{...}` - A scalar value e.g. `{Hello, World!}` or `{1000_0100}`
 - `[...args]` - A list of data e.g. `[{1} {2} {3}]`
-- `(callable ...args)` - A list that **does** something e.g. `(fmt:~print_ln [{Hello, World!}])`
+- `(callable ...args)` - A list that **does** something e.g. `(fmt:~print_ln {Hello, World!})`
 
 And the following **identifier** types:
-- `_enum_option` e.g, `_Vertical`
 - `variable` e.g. `name`
 - `CONSTANT` e.g. `NAME`
 - `'type` e.g. `'string`
@@ -105,17 +104,11 @@ And the following **identifier** types:
 - `@macro` e.g. `@inline_for`
 - `namespace:` e.g. `fmt:`
 
-*If* globals were allowed then they'd have the following syntax:
-- `$global_variable` e.g. `$name`
-- `$GLOBAL_CONSTANT` e.g. `$NAME`
-
-However, having seen the light of **namespace prefixes** via [Odin](https://odin-lang.org/), I feel that globals are an anti-pattern not worth enabling, as `(#import rt: {path/to/root})` and `rt:file_global` enable equivalent behaviour, without ever needing to wonder where something in a program/library was defined, and where it's being used/updated.
-
 Ultimately, the **aim** is to make `church` self-compiling, which is to say, for the lowest-level of the language to be the output grammar of a compile target.
 
 For example, if you're compiling for `gbz80`, then it might look something like:
 ```church
-(gbz80:@adc__a__r8 _d)
+(gbz80:@adc__a__r8 {d})
 ```
 
 Which would then emit:
@@ -127,7 +120,7 @@ The idea basically being, because `church`'s syntax style mirrors that of low-le
 ```church
 (#import fmt: {church/fmt})
 (#proc ~hello_world [] [] [
-	(fmt:~print_ln [{Hello, World!}])
+	(fmt:~print_ln {Hello, World!})
 ])
-(~hello_world [])
+(~hello_world)
 ```
