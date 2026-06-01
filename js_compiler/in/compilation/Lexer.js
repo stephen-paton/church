@@ -13,6 +13,7 @@ import { Token_OpenParen } from './Token_OpenParen.js';
 import { Token_OperatorStart } from './Token_OperatorStart.js';
 import { Token_OpenSquare } from './Token_OpenSquare.js';
 import { Token_ProcStart } from './Token_ProcStart.js';
+import { Token_SpreadOperator } from './Token_SpreadOperator.js';
 import { Token_TypeStart } from './Token_TypeStart.js';
 import { Token_UpperIdentifier } from './Token_UpperIdentifier.js';
 import { Token_Whitespace } from './Token_Whitespace.js';
@@ -22,6 +23,7 @@ const TOKEN_TYPES = [
 	Token_Literal,
 	Token_LowerIdentifier,
 	Token_UpperIdentifier,
+	Token_SpreadOperator,
 	Token_OperatorStart,
 	Token_MacroStart,
 	Token_ProcStart,
