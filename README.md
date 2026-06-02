@@ -79,6 +79,7 @@ Seriously, that one rule really can be used to express **any** idea in code:
     (set! total-days (+ total-days day))
     total-days))
 ```
+[source](https://dersavage.github.io/main/tutorials/why-lisp-is-horrible/)
 
 And, because **anything** can be expressed with it, there's never a need to add a new grammar rule to allow the language to express a new idea, regardless of how things progress in the field of computer science.
 
@@ -91,36 +92,36 @@ For example, it's always annoyed me with programming languages, that a keyword l
 With `church` the intention is to design the simplest possible grammar for expressing all of these things in such a way that purpose is **ubiquitous**.
 
 Taking that idea to its ultimate conclusion, I've landed on the following three **structural** elements:
-- `{...}` - A scalar value e.g. `{Hello, World!}` or `{1000_0100}`
-- `[...args]` - A list of data e.g. `[{1} {2} {3}]`
-- `(callable ...args)` - A list that **does** something e.g. `(fmt:~print_ln {Hello, World!})`
+- `type.{...}` - A scalar value e.g. `.{Hello, World!}` or `.{1000_0100}` (type can usually be implicitly determined by context so a standalone "." is used to say "ditto" the context type)
+- `[...args]` - A list of data e.g. `[.{1} .{2} .{3}]`
+- `(callable ...args)` - A list that **does** something e.g. `(fmt:~print_ln .{Hello, World!})`
 
 And the following **identifier** types:
 - `variable` e.g. `name`
 - `CONSTANT` e.g. `NAME`
-- `'type` e.g. `'string`
+- `namespace:` e.g. `fmt:`
+- `type.` e.g. `string.`
 - `#operator` e.g. `#enum`
 - `~procedure` e.g. `~flip_bit`
 - `@macro` e.g. `@inline_for`
-- `namespace:` e.g. `fmt:`
 
 Ultimately, the **aim** is to make `church` self-compiling, which is to say, for the lowest-level of the language to be the output grammar of a compile target.
 
 For example, if you're compiling for `gbz80`, then it might look something like:
 ```church
-(gbz80:@adc__a__r8 {d})
+(gbz80:@adc__a__r8 .{d})
 ```
 
 Which would then emit:
 ```church
-{8A}
+h8.{8A} (#comment .{Note: h8 means "hexadecimal" 8, which is a standalone type in church, vs. 0x11 or $11 syntax used in other languages to construct a u8 or i8 using different syntax. In church, everything is explicit })
 ```
 
 The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the reflective nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction:
 ```church
-(#import fmt: {church/fmt})
+(#import fmt: .{church/fmt})
 (#proc ~hello_world [] [] [
-	(fmt:~print_ln {Hello, World!})
+	(fmt:~print_ln .{Hello, World!})
 ])
 (~hello_world)
 ```
