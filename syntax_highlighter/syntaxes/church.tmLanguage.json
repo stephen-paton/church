@@ -1,0 +1,60 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "church",
+	"patterns": [
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#identifiers"
+		}
+	],
+	"repository": {
+		"strings": {
+			"comment": "literals",
+			"name": "string.quoted.double.church",
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "comment.line.church"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "comment.line.church"
+				}
+			}
+		},
+		"identifiers": {
+			"patterns": [
+				{
+					"comment": "namespace identifier",
+					"name": "entity.name.section.church",
+					"match": "(?<=[\\(\\s])[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*:(?=[#~@'a-z\\s])"
+				},
+				{
+					"comment": "operator identifier",
+					"name": "keyword.operator.church",
+					"match": "(?<=\\()#[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=\\s)"
+				},
+				{
+					"comment": "macro identifier",
+					"name": "entity.name.function.church",
+					"match": "(?<=[\\(\\s:])@[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+				},
+				{
+					"comment": "proc identifier",
+					"name": "entity.name.function.church",
+					"match": "(?<=[\\(\\s:])~[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+				},
+				{
+					"comment": "type identifier",
+					"name": "entity.name.type.church",
+					"match": "(?<=[\\s:])'[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+				}
+			]
+		}
+	},
+	"scopeName": "source.church"
+}

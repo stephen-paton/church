@@ -1,0 +1,25 @@
+{
+  "name": "church-syntax-highlighting",
+  "displayName": "church (Syntax Highlighter)",
+  "description": "Official church extension for syntax highlighting",
+  "version": "0.0.0",
+  "engines": {
+    "vscode": "^1.120.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "church",
+      "aliases": ["church", "church"],
+      "extensions": [".church"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "church",
+      "scopeName": "source.church",
+      "path": "./syntaxes/church.tmLanguage.json"
+    }]
+  }
+}
