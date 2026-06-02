@@ -19,13 +19,13 @@
 			"begin": "\\{",
 			"beginCaptures": {
 				"0": {
-					"name": "comment.line.church"
+					"name": "entity.name.type.church"
 				}
 			},
 			"end": "\\}",
 			"endCaptures": {
 				"0": {
-					"name": "comment.line.church"
+					"name": "entity.name.type.church"
 				}
 			}
 		},
@@ -54,7 +54,7 @@
 				{
 					"comment": "type identifier",
 					"name": "entity.name.type.church",
-					"match": "(?<=[\\s:])(:?[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*)?.(?=[\\s\\)\\]\\{])"
+					"match": "(?<=[\\s:])(:?[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*)?\\.(?=[\\s\\)\\]\\{])"
 				}
 			]
 		},
