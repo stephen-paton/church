@@ -1,5 +1,5 @@
-(#import fmt: {church/fmt})
+(#import fmt: .{church/fmt})
 (#proc ~hello_world [] [] [
-	(fmt:~print_ln {Hello, World!})
+	(fmt:~print_ln .{Hello, World!})
 ])
 (~hello_world)
