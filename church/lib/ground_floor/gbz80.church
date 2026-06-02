@@ -56,7 +56,7 @@
 (#comment__doc__section .{Instructions})
 (#comment__doc__subsection .{adc (Add With Carry)})
 (#comment__doc__annotation [(#blurb .{Add the value stored against register } (#code .{r8}) .{ to the accumulator } (#aside .{(with carry)}))])
-(#macro @adc__a__r8 [register r8.] [
+(#export (#macro @adc__a__r8 [register r8.] [
 	(#emit_literal h8. (#switch . register [
 		(#case .{a} [(#raise .{8F})])
 		(#case .{b} [(#raise .{88})])
@@ -66,14 +66,14 @@
 		(#case .{h} [(#raise .{8C})])
 		(#case .{l} [(#raise .{8D})])
 	]))
-])
+]))
 (#comment__doc__annotation [(#blurb .{Add the memory address pointed to by } (#code .{hl}) .{ to the accumulator } (#aside .{(with carry)}))])
-(#macro @adc__a__addr_at_hl [] [(#emit_literal bi:h8. .{8E})])
+(#export (#macro @adc__a__addr_at_hl [] [(#emit_literal bi:h8. .{8E})]))
 (#comment__doc__annotation [(#blurb .{Add the literal value } (#code .{n8}) .{ to the accumulator } (#aside .{(with carry)}))])
-(#macro @adc__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{CE00} (#cast . value)))])
+(#export (#macro @adc__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{CE00} (#cast . value)))]))
 (#comment__doc__subsection .{add (Add)})
 (#comment__doc__annotation [(#blurb .{Add the value stored against register } (#code .{r8}) .{ to the accumulator})])
-(#macro @add__a__r8 [register r8.] [
+(#export (#macro @add__a__r8 [register r8.] [
 	(#emit_literal bi:h8. (#switch . register [
 		(#case .{a} [(#raise .{87})])
 		(#case .{b} [(#raise .{80})])
@@ -83,20 +83,20 @@
 		(#case .{h} [(#raise .{84})])
 		(#case .{l} [(#raise .{85})])
 	]))
-])
+]))
 (#comment__doc__annotation [(#blurb .{Add the memory address pointed to by } (#code .{hl}) .{ to the accumulator})])
-(#macro @add__a__addr_at_hl [] [(#emit_literal bi:h8. .{86})])
+(#export (#macro @add__a__addr_at_hl [] [(#emit_literal bi:h8. .{86})]))
 (#comment__doc__annotation [(#blurb .{Add the literal value } (#code .{n8}) .{ to the accumulator})])
-(#macro @add__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{C600} (#cast . value)))])
+(#export (#macro @add__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{C600} (#cast . value)))]))
 (#comment__doc__annotation [(#blurb .{Add the value stored against register } (#code .{r16}) .{ to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
-(#macro @add__hl__r16 [register r16.] [
+(#export (#macro @add__hl__r16 [register r16.] [
 	(#emit_literal bi:h8. (#switch . register [
 		(#case .{bc} [(#raise .{09})])
 		(#case .{de} [(#raise .{19})])
 		(#case .{hl} [(#raise .{29})])
 	]))
-])
+]))
 (#comment__doc__annotation [(#blurb .{Add the value stored against the stack pointer to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
-(#macro @add__hl__sp [] [(#emit_literal bi:h8. .{39})])
+(#export (#macro @add__hl__sp [] [(#emit_literal bi:h8. .{39})]))
 (#comment__doc__annotation [(#blurb .{Add the literal value } (#code .{s8}) { to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
-(#macro @add__sp__s8 [value s8.] [(#emit_literal bi:h16. (#add . .{E800} (#cast . value)))])
+(#export (#macro @add__sp__s8 [value s8.] [(#emit_literal bi:h16. (#add . .{E800} (#cast . value)))]))
