@@ -86,4 +86,17 @@
 ])
 (#comment__doc__annotation [(#blurb .{Add the memory address pointed to by } (#code .{hl}) .{ to the accumulator})])
 (#macro @add__a__addr_at_hl [] [(#emit_literal bi:h8. .{86})])
+(#comment__doc__annotation [(#blurb .{Add the literal value } (#code .{n8}) .{ to the accumulator})])
 (#macro @add__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{C600} (#cast . value)))])
+(#comment__doc__annotation [(#blurb .{Add the value stored against register } (#code .{r16}) .{ to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
+(#macro @add__hl__r16 [register r16.] [
+	(#emit_literal bi:h8. (#switch . register [
+		(#case .{bc} [(#raise .{09})])
+		(#case .{de} [(#raise .{19})])
+		(#case .{hl} [(#raise .{29})])
+	]))
+])
+(#comment__doc__annotation [(#blurb .{Add the value stored against the stack pointer to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
+(#macro @add__hl__sp [] [(#emit_literal bi:h8. .{39})])
+(#comment__doc__annotation [(#blurb .{Add the literal value } (#code .{s8}) { to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))])
+(#macro @add__sp__s8 [value s8.] [(#emit_literal bi:h16. (#add . .{E800} (#cast . value)))])
