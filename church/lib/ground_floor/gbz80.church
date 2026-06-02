@@ -1,4 +1,5 @@
-{#import bi: "church:builtin"}
+(#import bi: {church:builtin})
+(#comment {START - Data Types})
 (#export (#union 'n8 [
 	bi:'u8
 	bi:'i8
@@ -7,27 +8,38 @@
 	bi:'u16
 	bi:'i16
 ]))
+(#export (#alias 's8 'i8))
 (#export (#enum 'r8 bi:'u8 [
-	_a {0}
-	_b {1}
-	_c {2}
-	_d {3}
-	_e {4}
-	_h {5}
-	_l {6}
+	{a} {0}
+	{b} {1}
+	{c} {2}
+	{d} {3}
+	{e} {4}
+	{h} {5}
+	{l} {6}
 ]))
 (#export (#enum 'r16 bi:'u8 [
-	_bc {0}
-	_de {1}
-	_hl {2}
+	{bc} {0}
+	{de} {1}
+	{hl} {2}
 ]))
+(#export (#alias 'u3 'u3))
 (#export (#enum 'v8 bi:'h8 [
-	_$00 {00}
-	_$08 {08}
-	_$10 {10}
-	_$18 {18}
-	_$20 {20}
-	_$28 {28}
-	_$30 {30}
-	_$38 {38}
+	{$00} {00}
+	{$08} {08}
+	{$10} {10}
+	{$18} {18}
+	{$20} {20}
+	{$28} {28}
+	{$30} {30}
+	{$38} {38}
 ]))
+(#export (#enum 'cnd bi:'u8 [
+	{z}  {0}
+	{nz} {1}
+	{c}  {2}
+	{nc} {3}
+]))
+(#export (#alias 'high_nnn bi:'h8))
+(#export (#alias 'low_nnn bi:'h8))
+(#comment {END - Data Types})
