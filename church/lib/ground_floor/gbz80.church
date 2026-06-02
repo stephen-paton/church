@@ -1,14 +1,19 @@
-(#import bi: {church:builtin})
-(#comment {START - Data Types})
+(#comment__doc__title {gbz80})
+(#import bi: {church/builtin})
+(#comment__doc__section {Data Types})
+(#comment__doc__annotation [(#blurb {An } (#code {8}) {-bit integer constant})])
 (#export (#union 'n8 [
 	bi:'u8
 	bi:'i8
 ]))
+(#comment__doc__annotation [(#blurb {A } (#code {16}) {-bit integer constant})])
 (#export (#union 'n16 [
 	bi:'u16
 	bi:'i16
 ]))
+(#comment__doc__annotation [(#blurb {A } (#code {8}) {-bit } (#bold {signed}) { integer (} (#code {-128}) { to } (#code {127}))])
 (#export (#alias 's8 'i8))
+(#comment__doc__annotation [(#blurb {Any of the } (#code {8}) {-bit registers: } (#code {a}) {, } (#code {b}) {, } (#code {c}) {, } (#code {d}) {, } (#code {e}) {, } (#code {h}) {, and } (#code {l}))])
 (#export (#enum 'r8 bi:'u8 [
 	{a} {0}
 	{b} {1}
@@ -18,12 +23,15 @@
 	{h} {5}
 	{l} {6}
 ]))
+(#comment__doc__annotation [(#blurb {Any of the } (#code {16}) {-bit registers: } (#code {bc}) {, } (#code {de}) {, and } (#code {hl}))])
 (#export (#enum 'r16 bi:'u8 [
 	{bc} {0}
 	{de} {1}
 	{hl} {2}
 ]))
+(#comment__doc__annotation [(#blurb {A } (#code {3}) {-bit } (#bold {unsigned}) { integer constant (} (#code {0}) { to } (#code {7}) {)})])
 (#export (#alias 'u3 'u3))
+(#comment__doc__annotation [(#blurb {Any of the } (#bold {restart}) { vectors: } (#code {$00}) {, } (#code {$08}) {, } (#code {$10}) {, } (#code {$18}) {, } (#code {$20}) {, } (#code {$28}) {, } (#code {$30}) {, and} (#code {$38}))])
 (#export (#enum 'v8 bi:'h8 [
 	{$00} {00}
 	{$08} {08}
@@ -34,18 +42,22 @@
 	{$30} {30}
 	{$38} {38}
 ]))
+(#comment__doc__annotation [(#blurb {Any of the conditions: } (#code {z}) {, } (#code {nz}) {, } (#code {c}) {, and} (#code {nc}))])
 (#export (#enum 'cnd bi:'u8 [
 	{z}  {0}
 	{nz} {1}
 	{c}  {2}
 	{nc} {3}
 ]))
+(#comment__doc__annotation [(#blurb {The } (#bold {most}) { significant byte of } (#code {nnn}) { (a } (#code {16}) {-bit register or address)})])
 (#export (#alias 'high_nnn bi:'h8))
+(#comment__doc__annotation [(#blurb {The } (#bold {least}) { significant byte of } (#code {nnn}) { (a } (#code {16}) {-bit register or address)})])
 (#export (#alias 'low_nnn bi:'h8))
-(#comment {END - Data Types})
-(#comment {START - Instructions})
+(#comment__doc__section {Instructions})
+(#comment__doc__subsection {ADC (Add With Carry)})
+(#comment__doc__annotation [(#blurb {Add the value stored against register } (#code {r8}) { to the accumulator } (#aside {(with carry)}))])
 (#macro @adc__a__r8 [register 'r8] [
-	(#emit (#switch register 'h8 [
+	(#emit (#literal bi:'h8 (#switch register [
 		(#case {a} [(#local_return {8F})])
 		(#case {b} [(#local_return {88})])
 		(#case {c} [(#local_return {89})])
@@ -53,6 +65,9 @@
 		(#case {e} [(#local_return {8B})])
 		(#case {h} [(#local_return {8C})])
 		(#case {l} [(#local_return {8D})])
-	]))
+	])))
 ])
-(#comment {END - Instructions})
+(#comment__doc__annotation [(#blurb {Add the memory address pointed to by } (#code {hl}) { to the accumulator } (#aside {(with carry)}))])
+(#macro @adc__a__addr_at_hl [] [(#emit (#literal bi:'h8 {8E}))])
+(#comment__doc__annotation [(#blurb {Add the literal value } (#code {n8}) { to the accumulator } (#aside {(with carry)}))])
+(#macro @adc__a__n8 [value 'n8] [(#emit (#literal bi:'h16 (#add {CE00} (#cast value))))])
