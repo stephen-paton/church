@@ -43,3 +43,16 @@
 (#export (#alias 'high_nnn bi:'h8))
 (#export (#alias 'low_nnn bi:'h8))
 (#comment {END - Data Types})
+(#comment {START - Instructions})
+(#macro @adc__a__r8 [register 'r8] [
+	(#emit (#switch register 'h8 [
+		(#case {a} [(#local_return {8F})])
+		(#case {b} [(#local_return {88})])
+		(#case {c} [(#local_return {89})])
+		(#case {d} [(#local_return {8A})])
+		(#case {e} [(#local_return {8B})])
+		(#case {h} [(#local_return {8C})])
+		(#case {l} [(#local_return {8D})])
+	]))
+])
+(#comment {END - Instructions})
