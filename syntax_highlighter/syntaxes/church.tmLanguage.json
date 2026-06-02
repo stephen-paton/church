@@ -7,6 +7,9 @@
 		},
 		{
 			"include": "#identifiers"
+		},
+		{
+			"include": "#comments"
 		}
 	],
 	"repository": {
@@ -31,27 +34,36 @@
 				{
 					"comment": "namespace identifier",
 					"name": "entity.name.section.church",
-					"match": "(?<=[\\(\\s])[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*:(?=[#~@'a-z\\s])"
+					"match": "(?<=[\\(\\s])[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*:(?=[#~@'a-z\\s])"
 				},
 				{
 					"comment": "operator identifier",
 					"name": "keyword.operator.church",
-					"match": "(?<=\\()#[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=\\s)"
+					"match": "(?<=\\()#[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*(?=\\s)"
 				},
 				{
 					"comment": "macro identifier",
 					"name": "entity.name.function.church",
-					"match": "(?<=[\\(\\s:])@[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+					"match": "(?<=[\\(\\s:])@[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*(?=[\\s\\)])"
 				},
 				{
 					"comment": "proc identifier",
 					"name": "entity.name.function.church",
-					"match": "(?<=[\\(\\s:])~[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+					"match": "(?<=[\\(\\s:])~[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*(?=[\\s\\)])"
 				},
 				{
 					"comment": "type identifier",
 					"name": "entity.name.type.church",
-					"match": "(?<=[\\s:])'[a-z][a-z0-9]*(?:_(?:[a-z0-9]+))*(?=[\\s\\)])"
+					"match": "(?<=[\\s:])'[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*(?=[\\s\\)])"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"comment": "line comment",
+					"name": "comment.line",
+					"match": "\\(#comment \\{(?:[^\\}]*|\\\\\\})\\}\\)"
 				}
 			]
 		}
