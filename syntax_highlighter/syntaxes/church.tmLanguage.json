@@ -63,7 +63,7 @@
 				{
 					"comment": "line comment",
 					"name": "comment.line",
-					"match": "(?<=\\()#(?:comment|comment__doc__title|comment__doc__section|comment__doc__subsection|comment__doc__annotation)(?=\\s)"
+					"match": "(?<=\\()#comment(?=\\s)"
 				}
 			]
 		}

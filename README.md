@@ -114,7 +114,7 @@ For example, if you're compiling for `gbz80`, then it might look something like:
 
 Which would then emit:
 ```church
-h8.{8A} (#comment .{Note: h8 means "hexadecimal" 8, which is a standalone type in church, vs. 0x11 or $11 syntax used in other languages to construct a u8 or i8 using different syntax. In church, everything is explicit})
+h8.{8A} (#comment .{Note: h8 means "hexadecimal" 8, which is a standalone type in church, vs. 0x8A, $8A, [8A] etc. syntax used in other languages to construct a u8 or i8 using different syntax. In church, everything is explicit})
 ```
 
 The idea basically being, because `church`'s syntax style mirrors that of low-level assembly languages - `operator ...args` - it has the capacity to directly represent them in-language, though in mirroring the reflective nature of [Lisp](https://lisp-lang.org/), the end-user of the language would typically be using it at a much higher level of abstraction:
