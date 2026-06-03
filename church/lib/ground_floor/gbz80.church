@@ -1,20 +1,19 @@
 (#comment (#title .{gbz80}))
-(#import bi: .{church/builtin})
 (#comment (#section .{Data Types}))
 (#comment (#annotation (#blurb .{An } (#code .{8}) .{-bit integer constant})))
 (#export (#union n8. [
-	bi:u8.
-	bi:i8.
+	:u8.
+	:i8.
 ]))
 (#comment (#annotation (#blurb .{A } (#code .{16}) .{-bit integer constant})))
 (#export (#union n16. [
-	bi:u16.
-	bi:i16.
+	:u16.
+	:i16.
 ]))
 (#comment (#annotation (#blurb .{A } (#code .{8}) .{-bit } (#bold .{signed}) .{ integer (} (#code .{-128}) .{ to } (#code .{127}))))
-(#export (#alias s8. bi:i8.))
+(#export (#alias s8. :i8.))
 (#comment (#annotation (#blurb .{Any of the } (#code .{8}) .{-bit registers: } (#code .{a}) .{, } (#code .{b}) .{, } (#code .{c}) .{, } (#code .{d}) .{, } (#code .{e}) .{, } (#code .{h}) .{, and } (#code .{l}))))
-(#export (#enum r8. bi:u8. [
+(#export (#enum r8. :u8. [
 	.{a} .{0}
 	.{b} .{1}
 	.{c} .{2}
@@ -24,15 +23,15 @@
 	.{l} .{6}
 ]))
 (#comment (#annotation (#blurb .{Any of the } (#code .{16}) .{-bit registers: } (#code .{bc}) .{, } (#code .{de}) .{, and } (#code .{hl}))))
-(#export (#enum r16. bi:u8. [
+(#export (#enum r16. :u8. [
 	.{bc} .{0}
 	.{de} .{1}
 	.{hl} .{2}
 ]))
 (#comment (#annotation (#blurb .{A } (#code .{3}) .{-bit } (#bold .{unsigned}) .{ integer constant (} (#code .{0}) .{ to } (#code .{7}) .{)})))
-(#export (#alias u3. bi:u3.))
+(#export (#alias u3. :u3.))
 (#comment (#annotation (#blurb .{Any of the } (#bold .{restart}) .{ vectors: } (#code .{$00}) .{, } (#code .{$08}) .{, } (#code .{$10}) .{, } (#code .{$18}) .{, } (#code .{$20}) .{, } (#code .{$28}) .{, } (#code .{$30}) .{, and} (#code .{$38}))))
-(#export (#enum v8. bi:h8. [
+(#export (#enum v8. :h8. [
 	.{$00} .{00}
 	.{$08} .{08}
 	.{$10} .{10}
@@ -43,16 +42,16 @@
 	.{$38} .{38}
 ]))
 (#comment (#annotation (#blurb .{Any of the conditions: } (#code .{z}) .{, } (#code .{nz}) .{, } (#code .{c}) .{, and} (#code .{nc}))))
-(#export (#enum cnd. bi:u8. [
+(#export (#enum cnd. :u8. [
 	.{z}  .{0}
 	.{nz} .{1}
 	.{c}  .{2}
 	.{nc} .{3}
 ]))
 (#comment (#annotation (#blurb .{The } (#bold .{most}) .{ significant byte of } (#code .{nnn}) .{ (a } (#code .{16}) .{-bit register or address)})))
-(#export (#alias high_nnn. bi:h8.))
+(#export (#alias high_nnn. :h8.))
 (#comment (#annotation (#blurb .{The } (#bold .{least}) .{ significant byte of } (#code .{nnn}) .{ (a } (#code .{16}) .{-bit register or address)})))
-(#export (#alias low_nnn. bi:h8.))
+(#export (#alias low_nnn. :h8.))
 (#comment (#section .{Instructions}))
 (#comment (#subsection .{adc (Add With Carry)}))
 (#comment (#annotation (#blurb .{Add the value stored against register } (#code .{r8}) .{ to the accumulator } (#aside .{(with carry)}))))
@@ -68,13 +67,13 @@
 	]))
 ]))
 (#comment (#annotation (#blurb .{Add the memory address pointed to by } (#code .{hl}) .{ to the accumulator } (#aside .{(with carry)}))))
-(#export (#macro @adc__a__addr_at_hl [] [(#emit_literal bi:h8. .{8E})]))
+(#export (#macro @adc__a__addr_at_hl [] [(#emit_literal :h8. .{8E})]))
 (#comment (#annotation (#blurb .{Add the literal value } (#code .{n8}) .{ to the accumulator } (#aside .{(with carry)}))))
-(#export (#macro @adc__a__n8 [value n8.] [(#emit_literal bi:h16. (#add . .{CE00} (#cast . value)))]))
+(#export (#macro @adc__a__n8 [value n8.] [(#emit_literal :h16. (#add . .{CE00} (#cast . value)))]))
 (#comment (#subsection .{add (Add)}))
 (#comment (#annotation (#blurb .{Add the value stored against register } (#code .{r8}) .{ to the accumulator})))
 (#export (#macro @add__a__r8 [register r8.] [
-	(#emit_literal bi:h8. (#switch . register [
+	(#emit_literal :h8. (#switch . register [
 		(#case .{a} (#raise .{87}))
 		(#case .{b} (#raise .{80}))
 		(#case .{c} (#raise .{81}))
@@ -85,18 +84,18 @@
 	]))
 ]))
 (#comment (#annotation (#blurb .{Add the memory address pointed to by } (#code .{hl}) .{ to the accumulator})))
-(#export (#macro @add__a__addr_at_hl [] (#emit_literal bi:h8. .{86})))
+(#export (#macro @add__a__addr_at_hl [] (#emit_literal :h8. .{86})))
 (#comment (#annotation (#blurb .{Add the literal value } (#code .{n8}) .{ to the accumulator})))
-(#export (#macro @add__a__n8 [value n8.] (#emit_literal bi:h16. (#add . .{C600} (#cast . value)))))
+(#export (#macro @add__a__n8 [value n8.] (#emit_literal :h16. (#add . .{C600} (#cast . value)))))
 (#comment (#annotation (#blurb .{Add the value stored against register } (#code .{r16}) .{ to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))))
 (#export (#macro @add__hl__r16 [register r16.] [
-	(#emit_literal bi:h8. (#switch . register [
+	(#emit_literal :h8. (#switch . register [
 		(#case .{bc} (#raise .{09}))
 		(#case .{de} (#raise .{19}))
 		(#case .{hl} (#raise .{29}))
 	]))
 ]))
 (#comment (#annotation (#blurb .{Add the value stored against the stack pointer to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))))
-(#export (#macro @add__hl__sp [] (#emit_literal bi:h8. .{39})))
+(#export (#macro @add__hl__sp [] (#emit_literal :h8. .{39})))
 (#comment (#annotation (#blurb .{Add the literal value } (#code .{s8}) { to } (#code .{hl}) (#aside .{(the } (#code .{16}) {-bit "accumulator")}))))
-(#export (#macro @add__sp__s8 [value s8.] (#emit_literal bi:h16. (#add . .{E800} (#cast . value)))))
+(#export (#macro @add__sp__s8 [value s8.] (#emit_literal :h16. (#add . .{E800} (#cast . value)))))

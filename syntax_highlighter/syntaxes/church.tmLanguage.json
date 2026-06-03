@@ -34,7 +34,7 @@
 				{
 					"comment": "namespace identifier",
 					"name": "entity.name.section.church",
-					"match": "(?<=[\\(\\s])[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*:(?=[#~@'a-z\\s])"
+					"match": "(?<=[\\(\\s])(:?[a-z][a-z0-9]*(?:_+(?:[a-z0-9]+))*)?:(?=[#~@'a-z\\s])"
 				},
 				{
 					"comment": "operator identifier",

@@ -1,5 +1,4 @@
-(#import bi: .{church/built_in})
-(#enum bit_index_8. bi:b8. [
+(#enum bit_index_8. :b8. [
 	.{0} .{0000_0001}
 	.{1} .{0000_0010}
 	.{2} .{0000_0100}
@@ -9,7 +8,7 @@
 	.{6} .{0100_0000}
 	.{7} .{1000_0000}
 ])
-(#proc ~u8__is_on [value bi:u8. bit_index bit_index_8.] [is_on bi:bool.] [
+(#proc ~u8__is_on [value :u8. bit_index bit_index_8.] [is_on :bool.] [
 	(#set is_on (#has_matching_bits (#bitwise_and (#get_backing_type bit_index) value) value))
 ])
 (#proc_group ~is_on [
